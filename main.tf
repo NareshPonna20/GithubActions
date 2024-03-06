@@ -6,10 +6,11 @@ resource "azurerm_resource_group" "RG" {
 }
 
 resource "azurerm_virtual_network" "vnet" {
-  name                = "myvnet101010"
+  for_each            = var.nasgdetails
+  name                = each.vnet_name
   location            = azurerm_resource_group.RG.location
   resource_group_name = azurerm_resource_group.RG.name
-  address_space       = ["10.0.0.0/16"]
+  address_space       = each.address_prefix
 
  dynamic "subnet" {
  for_each   = var.subnetdetails
