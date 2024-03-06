@@ -12,7 +12,7 @@ resource "azurerm_virtual_network" "vnet" {
   address_space       = ["10.0.0.0/16"]
 
  dynamic "subnet" {
- for_each   = each.subnetdetails
+ for_each   = var.subnetdetails
  content {
  subnet = subnet.key
  address_prefix  = subnet.value
