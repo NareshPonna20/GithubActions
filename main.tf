@@ -7,9 +7,9 @@ resource "azurerm_resource_group" "RG" {
 
 resource "azurerm_virtual_network" "vnet" {
   for_each            = var.nasgdetails
-  name                = each.vnet_name
+  name                = each.value.vnet_name
   location            = azurerm_resource_group.RG.location
   resource_group_name = azurerm_resource_group.RG.name
-  address_space       = each.address_prefix
+  address_space       = [10.0.0.1/16]
 
 }
